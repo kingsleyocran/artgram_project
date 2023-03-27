@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .navBtn {
+    @apply hover:scale-125 transition-all duration-150
+        ease-out h-6 w-6 text-gray-500 cursor-pointer;
+  }
+
+  .hoverScale {
+    @apply hover:scale-110 transition-all duration-150
+        ease-out cursor-pointer z-50;
+  }
+
+  .hoverScaleIn {
+    @apply hover:scale-90 transition-all duration-150
+        ease-out cursor-pointer z-50;
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+    .masonry-6-col {
+      column-count: 6;
+      column-gap: 0.75em;
+    }
+    .masonry-5-col {
+        column-count: 5;
+        column-gap: 0.75em;
+      }
+    .masonry-4-col {
+      column-count: 4;
+      column-gap: 0.75em;
+    }
+
+    .masonry-3-col {
+      column-count: 3;
+      column-gap: 0.75em;
+    }
+
+    .masonry-2-col {
+      column-count: 2;
+      column-gap: 0.75em;
+    }
+    .break-inside {
+      break-inside: avoid;
+    }
+  }
+}
