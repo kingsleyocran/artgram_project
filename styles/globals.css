@@ -42,9 +42,112 @@
     .masonry-2-col {
       column-count: 2;
       column-gap: 0.75em;
+      row-gap: 1.em;
     }
     .break-inside {
       break-inside: avoid;
     }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+  }
   }
 }
+
+
+@font-face {
+  font-family: "Circular Std";
+  src: url('../public/assets/fonts/CircularStd-Medium.ttf');
+  font-weight: medium;
+  font-style: normal;
+}
+  
+@font-face {
+  font-family: "Circular Std";
+  src: url('../public/assets/fonts/CircularStd-Book.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Circular Std";
+  src: url('../public/assets/fonts/CircularStd-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Circular Std";
+  src: url('../public/assets/fonts/CircularStd-Black.ttf');
+  font-weight: 900;
+  font-style: normal;
+}
+
+:root {
+  --background: theme("colors.white");
+  --background-secondary: theme("colors.gray.50");
+
+  --accent-dark: rgb(246 179 0);
+  --accent-medium: rgb(246 179 0);
+  --accent-light: rgb(246 179 0);
+
+  --primary-dark: theme("colors.gray.900");
+  --primary-medium: theme("colors.gray.700");
+  --primary-light: theme("colors.gray.500");
+
+  --container-surface: rgb(248 248 248);
+  --container-on-surface: rgb(224 224 224);
+  --container-on-background: theme("colors.black");
+
+  --textbox-fill: rgb(255 255 255);
+
+  --button-primary: rgb(0 0 0);
+  --button-primary-hover: rgb(113 113 113);
+
+  --text-lighter: rgb(82 82 82);
+  --text-light: rgb(147 147 147);
+  --text-medium: rgb(129 129 129);
+  --text-dark: rgb(160 160 160);
+}
+
+[data-theme="dark"] {
+  --background: theme("colors.black");
+  --background-secondary: theme("colors.gray.800");
+
+  --accent-dark: rgb(246 179 0);
+  --accent-medium: rgb(246 179 0);
+  --accent-light: rgb(246 179 0);
+
+  --primary-dark: theme("colors.gray.300");
+  --primary-medium: theme("colors.gray.200");
+  --primary-light: theme("colors.gray.100");
+
+  --container-surface: rgb(20 20 20);
+  --container-on-surface: rgb(50 50 50);
+  --container-on-background: rgb(13 13 13);
+
+  --textbox-fill: rgb(30 30 30);
+
+  --button-primary: rgb(67 67 67);
+  --button-primary-hover: rgb(132 132 132);
+
+  
+  --text-light: rgb(100 100 100);
+  --text-medium: rgb(120 120 120);
+  --text-dark: rgb(140 140 140);
+  --text-lighter: rgb(210 210 210); 
+}
+
+
+body {
+  background-color: #0E0E0E;
+  font-family: 'Circular Std';
+  font-weight: normal;
+}
+
