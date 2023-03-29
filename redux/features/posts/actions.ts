@@ -92,39 +92,21 @@ export const deletePostAsync = createAsyncThunk(
 
 export const addCommentAsync = createAsyncThunk(
   "posts/addComment",
-  async ({
-    postID,
-    dataObject,
-  }: {
-    postID: string;
-    dataObject: any;
-  }) => {
-    await addComment(dataObject,postID);
+  async ({ postID, dataObject }: { postID: string; dataObject: any }) => {
+    await addComment(dataObject, postID);
   }
 );
 
 export const likePostAsync = createAsyncThunk(
   "posts/addLike",
-  async ({
-    userID,
-    postData,
-  }: {
-    userID: string;
-    postData: any;
-  }) => {
+  async ({ userID, postData }: { userID: string; postData: any }) => {
     await addLike(postData, userID);
   }
 );
 
 export const unLikePostAsync = createAsyncThunk(
   "posts/unLike",
-  async ({
-    userID,
-    postData,
-  }: {
-    userID: string;
-    postData: any;
-  }) => {
+  async ({ userID, postData }: { userID: string; postData: any }) => {
     await unLike(postData, userID);
   }
 );
@@ -136,6 +118,16 @@ export const checkBeforeFetchPosts = (): AppThunk => (dispatch, getState) => {
     dispatch(fetchBatchPostsAsync());
   }
 };
+
+export const checkBeforeFetchUserPosts =
+  (userID: any): AppThunk =>
+  (dispatch, getState) => {
+    const currentValue = reducer.selectUserPosts(getState());
+    if (!currentValue) {
+      console.log("CHECK HERE", currentValue)
+      dispatch(fetchUserPostsAsync(userID));
+    }
+  };
 
 export const addNewPostAndFetch =
   (dataObject: any, selectedFile: any, userID: any): AppThunk =>
@@ -169,7 +161,7 @@ export const deletePostAndFetch =
     dispatch(fetchUserPostsAsync(userID));
   };
 
-  export const addCommentAndFetch =
+export const addCommentAndFetch =
   (dataObject: any, postID: string): AppThunk =>
   (dispatch, getState) => {
     dispatch(addCommentAsync({ postID, dataObject }));

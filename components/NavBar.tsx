@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
+import { useAppSelector, useAppDispatch } from "../redux/app/hooks";
+import {setIsSideBarOpen, selectIsSideBarOpen} from "../redux/features/utilBools/utilBoolsSlice";
 import { useState, useEffect } from "react";
 
 function NavBar() {
@@ -9,6 +10,11 @@ function NavBar() {
 
   const [mounted, setMounted] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const isSideBarOpen = useAppSelector(
+    selectIsSideBarOpen
+  );
 
   return (
     <>
@@ -19,7 +25,7 @@ function NavBar() {
          }`}
       >
         {/* NAVBAR DESKTOP */}
-        <div className="flex justify-between max-w-5xl mx-8 2xl:mx-auto">
+        <div className="flex h-[64px]  justify-between max-w-7xl md:mx-8 mx-6 xl:mx-auto">
           {/* Logo */}
           <button
             onClick={() => router.push("/")}
@@ -38,9 +44,9 @@ function NavBar() {
             </h1>
           </button>
 
-          <div className="flex flex-row gap-2 items-center">
+          <div className="flex flex-row gap-4 items-center">
             {/* Search */}
-            <div className="max-w-lg">
+            <div className="max-w-lg hidden md:flex">
               <div className="relative p-3 rounded-md">
                 <div className="absolute inset-y-0 pl-3 flex items-center pointer-events-none">
                   <Image
@@ -58,44 +64,36 @@ function NavBar() {
               </div>
             </div>
 
-            
-          </div>
-        </div>
-
-        {/* MOBILE MENU */}
-        <div
-          className={`${
-            showMobileMenu ? "h-400 mt-2 py-2" : "h-0 "
-          }  max-w-7xl mx-5  xl:mx-auto transition-all duration-300 overflow-hidden`}
-        >
-          <div className="flex flex-col ">
-            <div
-              onClick={() => router.push("/shows")}
-              className={` text-2xl rounded-2xl active:bg-th-container-on-surface p-5 transition-all`}
+            {/* Search Button Mobile  */}
+            <button
+              onClick={() => {}}
+              //todo: search drops under nav
+              className="md:hidden  relative flex flex-row justify-center items-center gap-3"
             >
-              Shows
-            </div>
+              <div className="relative h-[20px] w-[20px] ">
+                <Image
+                  src={"/assets/icons/search_white.svg"}
+                  alt="Picture of the author"
+                  fill
+                  priority
+                />
+              </div>
+            </button>
 
-            <div
-              onClick={() => router.push("/for-podcasters")}
-              className={` text-2xl rounded-2xl active:bg-th-container-on-surface p-5 transition-all`}
+            {/* Profile Side  */}
+            <button
+              onClick={() => dispatch(setIsSideBarOpen(true))}
+              className="relative flex flex-row justify-center items-center gap-3"
             >
-              For Podcasters
-            </div>
-
-            <div
-              onClick={() => router.push("/blogs")}
-              className={`text-2xl rounded-2xl active:bg-th-container-on-surface p-5 transition-all`}
-            >
-              Blogs
-            </div>
-
-            <div
-              onClick={() => router.push("/about")}
-              className={` text-2xl rounded-2xl active:bg-th-container-on-surface p-5 transition-all`}
-            >
-              About
-            </div>
+              <div className="relative h-[30px] w-[30px] ">
+                <Image
+                  src="/assets/icons/profile_vector.svg"
+                  alt="Picture of the author"
+                  fill
+                  priority
+                />
+              </div>
+            </button>
           </div>
         </div>
       </nav>

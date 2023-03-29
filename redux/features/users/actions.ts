@@ -36,7 +36,6 @@ export const addNewUserAsync = createAsyncThunk(
     dataObject,
     userID,
   }: {
-    selectedFile: string;
     dataObject: any;
     userID: string;
   }) => {
@@ -104,7 +103,8 @@ export const checkBeforeFetchUser =
   (userID: string): AppThunk =>
   (dispatch, getState) => {
     const currentValue = reducer.selectUser(getState());
-    if (currentValue) {
+    
+    if (!currentValue) {
       dispatch(fetchUserAsync({ userID }));
     }
   };

@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/auth/log-in.tsx", "pages/auth/sign-up.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/auth/log-in.tsx", "pages/auth/sign-up.tsx", "components/PostModal.js"],
   "exclude": ["node_modules"]
 }

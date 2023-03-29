@@ -23,8 +23,8 @@ function HomeFeed() {
   }, []);
 
   return (
-    <main className="max-w-5xl mx-8 2xl:mx-auto mt-4">
-      <div className="masonry-1-col md:masonry-2-col lg:masonry-3-col xl:masonry-4-col gap-y-3">
+    <main className=" max-w-7xl md:mx-8 mx-4 xl:mx-auto mt-4">
+      <div className="masonry-1-col md:masonry-2-col lg:masonry-3-col xl:masonry-4-col md:gap-y-3">
         {postsState?.map((post) => (
           <ImageCard key={post.id} post={post} />
         ))}

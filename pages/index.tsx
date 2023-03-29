@@ -2,11 +2,19 @@ import type { NextPage } from "next";
 import CustomHead from "../components/CustomHead";
 import NavBar from "../components/NavBar";
 import HomeFeedSection from "../components/HomeFeedSection";
+import ProfileAside from "../components/ProfileAside";
+import PostModal from "../components/PostModal";
 import ProtectedRoute from "../context/ProtectedRoute";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import * as userRedux from "../redux/features/users";
+import * as utilBools from "../redux/features/utilBools/utilBoolsSlice";
+import { useAppSelector, useAppDispatch } from "../redux/app/hooks";
+import { useAuth } from "../context/AuthContext";
 
 const Home: NextPage = () => {
-  const [sideIsOpen, setsideIsOpen] = useState(false);
+  const isSideBarOpen = useAppSelector(utilBools.selectIsSideBarOpen);
+
 
   return (
     <ProtectedRoute>
@@ -14,16 +22,19 @@ const Home: NextPage = () => {
         <CustomHead title="Artgram" />
 
         <div className="flex flex-row relative">
-          <div className="relative grow">
+          <div
+            className={`relative grow  ${
+              isSideBarOpen ? " w-[0px] overflow-hidden" : "w-full"
+            } `}
+          >
             <NavBar />
 
             <HomeFeedSection />
           </div>
 
-          <aside
-            onClick={() => setsideIsOpen(false)}
-            className={`flex-none ${ sideIsOpen ? " basis-1/4" : "basis-0"} transition-all duration-400 ease-out h-screen sticky top-0 border-neutral-800 border-l-2  bg-[#141414]`}
-          ></aside>
+          <ProfileAside />
+
+          <PostModal/>
         </div>
       </div>
     </ProtectedRoute>
