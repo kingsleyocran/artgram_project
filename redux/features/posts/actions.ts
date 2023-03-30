@@ -124,46 +124,14 @@ export const checkBeforeFetchUserPosts =
   (dispatch, getState) => {
     const currentValue = reducer.selectUserPosts(getState());
     if (!currentValue) {
-      console.log("CHECK HERE", currentValue)
       dispatch(fetchUserPostsAsync(userID));
     }
-  };
-
-export const addNewPostAndFetch =
-  (dataObject: any, selectedFile: any, userID: any): AppThunk =>
-  (dispatch, getState) => {
-    dispatch(addNewPostAsync({ selectedFile, dataObject }));
-    dispatch(fetchBatchPostsAsync());
-    dispatch(fetchUserPostsAsync(userID));
-  };
-
-export const updatePostAndFetch =
-  (dataObject: any, postID: string, userID: string): AppThunk =>
-  (dispatch, getState) => {
-    dispatch(updatePostAsync({ dataObject, postID, userID }));
-    dispatch(fetchBatchPostsAsync());
-    dispatch(fetchUserPostsAsync(userID));
-  };
-
-export const updatePostImageAndFetch =
-  (postID: string, userID: string, selectedFile: any): AppThunk =>
-  (dispatch, getState) => {
-    dispatch(updatePostImageAsync({ selectedFile, postID }));
-    dispatch(fetchBatchPostsAsync());
-    dispatch(fetchUserPostsAsync(userID));
-  };
-
-export const deletePostAndFetch =
-  (userID: string, postID: string): AppThunk =>
-  (dispatch, getState) => {
-    dispatch(deletePostAsync({ postID, userID }));
-    dispatch(fetchBatchPostsAsync());
-    dispatch(fetchUserPostsAsync(userID));
   };
 
 export const addCommentAndFetch =
   (dataObject: any, postID: string): AppThunk =>
   (dispatch, getState) => {
-    dispatch(addCommentAsync({ postID, dataObject }));
-    dispatch(fetchPostDataAsync(postID));
+    dispatch(addCommentAsync({ postID, dataObject })).then(() => {
+      dispatch(fetchPostDataAsync(postID));
+    });
   };

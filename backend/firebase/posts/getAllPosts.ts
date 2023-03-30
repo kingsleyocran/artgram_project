@@ -38,7 +38,6 @@ export default async function getBatchData() {
     data?.forEach((item) => {
       result.push({
         id: item.id,
-        title: item.data().title ?? "",
         caption: item.data().caption ?? "",
         imageUrl: item.data().imageUrl ?? "",
         userID: item.data().userID ?? "",

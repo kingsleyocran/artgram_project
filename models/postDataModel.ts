@@ -3,7 +3,6 @@ import commentDataModel from "./commentDataModel";
 
 export default interface postDataModel {
   id: string;
-  title: string;
   caption: string;
   imageUrl: string;
   userID: string;

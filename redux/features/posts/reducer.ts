@@ -10,9 +10,10 @@ export interface postState {
   postsUser: Array<postDataModel> | null;
   post: postCommentDataModel | null;
 
-  postStatus: "idle" | "loading" | "failed";
-  postsUserStatus: "idle" | "loading" | "failed";
-  postOpStatus: "idle" | "loading" | "failed";
+  postStatus: "idle" | "loading" | "failed" | "success";
+  postsUserStatus: "idle" | "loading" | "failed" | "success";
+  postOpStatus: "idle" | "loading" | "failed" | "success";
+  postDelStatus: "idle" | "loading" | "failed" | "success";
 }
 
 const initialState: postState = {
@@ -23,6 +24,7 @@ const initialState: postState = {
   postStatus: "idle",
   postsUserStatus: "idle",
   postOpStatus: "idle",
+  postDelStatus: "idle",
 };
 
 export const postSlice = createSlice({
@@ -105,13 +107,13 @@ export const postSlice = createSlice({
 
       //Delete Post Async
       .addCase(actions.deletePostAsync.pending, (state) => {
-        state.postOpStatus = "loading";
+        state.postDelStatus = "loading";
       })
       .addCase(actions.deletePostAsync.fulfilled, (state, action) => {
-        state.postOpStatus = "idle";
+        state.postDelStatus = "idle";
       })
       .addCase(actions.deletePostAsync.rejected, (state) => {
-        state.postOpStatus = "failed";
+        state.postDelStatus = "failed";
       })
 
       //Add Comment Async
@@ -157,6 +159,8 @@ export const selectPost = (state: RootState) => state.post.post;
 
 export const selectPostsLoadingState = (state: RootState) => state.post.postStatus;
 export const selectPostLoadingState = (state: RootState) => state.post.postOpStatus;
+export const selectPostDelLoadingState = (state: RootState) => state.post.postDelStatus;
 export const selectUserPostsLoadingState = (state: RootState) => state.post.postsUserStatus;
+
 
 export default postSlice.reducer;

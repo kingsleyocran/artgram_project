@@ -16,7 +16,6 @@ export default async function getData(postID: string) {
     if (docSnap.exists()) {
       const postData: postDataModel = {
         id: docSnap.id ?? "",
-        title: docSnap.data().title ?? "",
         userID: docSnap.data().userID ?? "",
         userName: docSnap.data().userName ?? "",
         userImgUrl: docSnap.data().userImgUrl ?? "",

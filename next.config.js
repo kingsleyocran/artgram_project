@@ -7,10 +7,16 @@ module.exports = {
         protocol: "https",
         hostname: "firebasestorage.googleapis.com",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
 
+      
     ],
     domains: [
       "firebasestorage.googleapis.com", //firebase-storage
+      "lh3.googleusercontent.com"
     ],
   },
   webpack(config) {

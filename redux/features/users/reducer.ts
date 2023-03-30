@@ -5,8 +5,8 @@ import userDataModel from "../../../models/userDataModel";
 
 export interface UserState {
   userData: userDataModel | null;
-  status: "idle" | "loading" | "failed";
-  followStatus: "idle" | "loading" | "failed";
+  status: "idle" | "loading" | "failed" | "success";
+  followStatus: "idle" | "loading" | "failed" | "success";
 }
 
 const initialState: UserState = {

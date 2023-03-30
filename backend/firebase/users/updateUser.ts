@@ -1,29 +1,21 @@
 import { ref, getDownloadURL, uploadString } from "@firebase/storage";
 import { db, storage } from "../../../firebase";
 import {
-  addDoc,
   serverTimestamp,
   updateDoc,
-  collection,
   doc,
-  QueryDocumentSnapshot,
-  DocumentData,
-  query,
-  where,
-  limit,
-  getDocs,
-  orderBy,
 } from "@firebase/firestore";
 
-export default async function updateData(data: any, userID:string) {
+export default async function updateData(data: any, userID: string) {
   // update the doc by setting done to true
   await updateDoc(doc(db, "users", userID), {
     ...data,
-    dateUpdated: serverTimestamp()
+    dateCreated: serverTimestamp(),
+    dateUpdated: serverTimestamp(),
   });
 }
 
-export async function updateImage(selectedFile: any, userID:string) {
+export async function updateImage(selectedFile: any, userID: string) {
   // update the doc by setting done to true
   const imageRef = ref(storage, `users/${userID}`);
 
@@ -33,6 +25,7 @@ export async function updateImage(selectedFile: any, userID:string) {
 
       await updateDoc(doc(db, "users", userID), {
         imageUrl: downloadURL,
+        dateCreated: serverTimestamp(),
         dateUpdated: serverTimestamp(),
       });
     }

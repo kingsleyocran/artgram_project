@@ -34,7 +34,8 @@ const Home: NextPage = () => {
 
           <ProfileAside />
 
-          <PostModal/>
+          <PostModal  />
+
         </div>
       </div>
     </ProtectedRoute>

@@ -24,10 +24,13 @@ export default async function updateData(
   try {
     const docRef = doc(db, "posts", postID);
     const docSnap = await getDoc(docRef);
+
     if (docSnap.exists()) {
       if (docSnap.data().userID == userID) {
         await updateDoc(doc(db, "posts", postID), {
           ...data,
+          dateCreated: serverTimestamp(),
+          dateUpdated: serverTimestamp(),
         });
       }
     }
@@ -36,10 +39,7 @@ export default async function updateData(
   }
 }
 
-export async function updateImage(
-  selectedFile: any,
-  postID: string
-) {
+export async function updateImage(selectedFile: any, postID: string) {
   try {
     const imageRef = ref(storage, `posts/image-${postID}`);
     await uploadString(imageRef, selectedFile, "data_url").then(
@@ -48,6 +48,8 @@ export async function updateImage(
 
         await updateDoc(doc(db, "posts", postID), {
           imageUrl: downloadURL,
+          dateCreated: serverTimestamp(),
+          dateUpdated: serverTimestamp(),
         });
       }
     );

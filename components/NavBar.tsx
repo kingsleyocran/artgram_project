@@ -25,7 +25,7 @@ function NavBar() {
          }`}
       >
         {/* NAVBAR DESKTOP */}
-        <div className="flex h-[64px]  justify-between max-w-7xl md:mx-8 mx-6 xl:mx-auto">
+        <div className="flex h-[64px]  justify-between w-full max-w-7xl px-6  xl:mx-auto">
           {/* Logo */}
           <button
             onClick={() => router.push("/")}
@@ -82,7 +82,9 @@ function NavBar() {
 
             {/* Profile Side  */}
             <button
-              onClick={() => dispatch(setIsSideBarOpen(true))}
+              onClick={() =>{
+                const open:any = true;
+                dispatch(setIsSideBarOpen(open))}}
               className="relative flex flex-row justify-center items-center gap-3"
             >
               <div className="relative h-[30px] w-[30px] ">
