@@ -7,16 +7,14 @@ import * as utilBools from "../../redux/features/utilBools/utilBoolsSlice";
 
 import UnlikeIcon from "../../public/assets/icons/unlike.svg";
 
-
 function ImageUserCard({ post }: { post: any }) {
   const dispatch = useAppDispatch();
 
   return (
     <div
       onClick={async () => {
-        
         dispatch(utilBools.setPostEditData(post));
-        const open:any = true;
+        const open: any = true;
         dispatch(utilBools.setIsPostModalOpen(open));
       }}
       className="bg-[#141414] border-neutral-800 border rounded-2xl relative"
